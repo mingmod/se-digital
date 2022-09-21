@@ -1,11 +1,11 @@
-import React, { createContext } from "react";
+import React, { createContext } from 'react';
 
 export type DigitalSettings = {
   color: string;
   passiveColor: string;
   passiveOpacity: number;
   shadow: boolean;
-  type: 'round' | 'sharp',
+  type: 'round' | 'sharp';
   weight: 'bold' | 'normal' | 'light';
 };
 
@@ -18,21 +18,28 @@ export const defaultSettings: DigitalSettings = {
   weight: 'normal',
 };
 
-export const DigitalSettingsContext = createContext<DigitalSettings>(defaultSettings);
+export const DigitalSettingsContext = createContext<DigitalSettings>(
+  defaultSettings
+);
 
 export type DigitalSettingsProps = DigitalSettings & {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 };
 
-export const DigitalSettings: React.FC<DigitalSettingsProps> = ({ children, ...settings }) => (
-  <DigitalSettingsContext.Provider value={{
-    ...defaultSettings,
-    ...settings,
-  }}>
+export const DigitalSettings: React.FC<DigitalSettingsProps> = ({
+  children,
+  ...settings
+}) => (
+  <DigitalSettingsContext.Provider
+    value={{
+      ...defaultSettings,
+      ...settings,
+    }}
+  >
     {children}
   </DigitalSettingsContext.Provider>
 );
 
-DigitalSettings.defaultProps = defaultSettings
+DigitalSettings.defaultProps = defaultSettings;
 
 export default DigitalSettings;

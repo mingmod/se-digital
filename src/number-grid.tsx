@@ -1,13 +1,13 @@
 import React from 'react';
 import DigitalNumberGridItem from './line';
-import './styles.css'
+import './styles.css';
 
 export type DigitalNumberGridProps = {
   size?: number;
-  value?: number
-}
+  value?: number;
+};
 
-const defaultSize = 200
+const defaultSize = 200;
 
 const defaultMap = {
   tl: false,
@@ -17,7 +17,7 @@ const defaultMap = {
   bl: false,
   bb: false,
   br: false,
-}
+};
 
 const eight = {
   tl: true,
@@ -27,10 +27,10 @@ const eight = {
   bl: true,
   bb: true,
   br: true,
-}
+};
 
-const activeMap: {[prop: string]: typeof defaultMap} = {
-  'default': defaultMap,
+const activeMap: { [prop: string]: typeof defaultMap } = {
+  default: defaultMap,
   '0': {
     ...eight,
     cc: false,
@@ -76,40 +76,47 @@ const activeMap: {[prop: string]: typeof defaultMap} = {
     ...eight,
     bl: false,
   },
-}
+};
 
 const getValidValude = (value?: number): string => {
   if (!value && value !== 0) return 'default';
   return `${value % 10}`;
-}
+};
 
-export const DigitalNumberGrid: React.FC<DigitalNumberGridProps> = ({ size = defaultSize, value }) => {
+export const DigitalNumberGrid: React.FC<DigitalNumberGridProps> = ({
+  size = defaultSize,
+  value,
+}) => {
+  const { tl, tr, tt, cc, bl, bb, br } = activeMap[getValidValude(value)];
 
-  const { tl, tr, tt, cc, bl, bb, br } = activeMap[getValidValude(value)]; 
-
-  return <div style={{
-    width: size + 'px'
-  }} className='se-digital-grid'>
-    <div className='se-digital-grid-item'>
-      <ul>
-        <DigitalNumberGridItem align='left' size={size} active={tl} />
-        <DigitalNumberGridItem align='top' size={size} active={tt}  />
-        <DigitalNumberGridItem align='right' size={size} active={tr} />
-        <DigitalNumberGridItem align='center' size={size} active={cc} />
-      </ul>
+  return (
+    <div
+      style={{
+        width: size + 'px',
+      }}
+      className="se-digital-grid"
+    >
+      <div className="se-digital-grid-item">
+        <ul>
+          <DigitalNumberGridItem align="left" size={size} active={tl} />
+          <DigitalNumberGridItem align="top" size={size} active={tt} />
+          <DigitalNumberGridItem align="right" size={size} active={tr} />
+          <DigitalNumberGridItem align="center" size={size} active={cc} />
+        </ul>
+      </div>
+      <div className="se-digital-grid-item">
+        <ul>
+          <DigitalNumberGridItem align="left" size={size} active={bl} />
+          <DigitalNumberGridItem align="bottom" size={size} active={bb} />
+          <DigitalNumberGridItem align="right" size={size} active={br} />
+        </ul>
+      </div>
     </div>
-    <div className='se-digital-grid-item'>
-      <ul>
-        <DigitalNumberGridItem align='left' size={size} active={bl} />
-        <DigitalNumberGridItem align='bottom' size={size} active={bb} />
-        <DigitalNumberGridItem align='right' size={size} active={br} />
-      </ul>
-    </div>
-  </div>
-}
+  );
+};
 
 DigitalNumberGrid.defaultProps = {
   size: defaultSize,
-}
+};
 
-export default DigitalNumberGrid
+export default DigitalNumberGrid;
