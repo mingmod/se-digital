@@ -2,7 +2,6 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { DigitalSettings, DigitalSettingsProps, DigitalNumber } from '../src';
 
-
 const meta: Meta = {
   title: 'Settings',
   component: DigitalSettings,

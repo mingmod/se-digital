@@ -1,11 +1,11 @@
-import React from 'react';
+// import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Default as Thing } from '../stories/Thing.stories';
+// import { Default as Settings } from '../stories/Settings.stories';
 
-describe('Thing', () => {
+describe('Settings', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Thing />, div);
+    // ReactDOM.render(<Settings />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

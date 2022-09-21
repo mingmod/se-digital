@@ -22,7 +22,7 @@ export const DigitalSettingsContext = createContext<DigitalSettingsType>(
   defaultSettings
 );
 
-export type DigitalSettingsProps = DigitalSettingsType & {
+export type DigitalSettingsProps = Partial<DigitalSettingsType> & {
   children?: React.ReactNode;
 };
 
