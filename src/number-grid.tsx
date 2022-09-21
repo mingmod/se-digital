@@ -1,4 +1,5 @@
 import React from 'react';
+import { DEFAULT_SIZE } from './constants';
 import DigitalNumberGridItem from './line';
 import './styles.css';
 
@@ -6,8 +7,6 @@ export type DigitalNumberGridProps = {
   size?: number;
   value?: number;
 };
-
-const defaultSize = 200;
 
 const defaultMap = {
   tl: false,
@@ -84,7 +83,7 @@ const getValidValude = (value?: number): string => {
 };
 
 export const DigitalNumberGrid: React.FC<DigitalNumberGridProps> = ({
-  size = defaultSize,
+  size = DEFAULT_SIZE,
   value,
 }) => {
   const { tl, tr, tt, cc, bl, bb, br } = activeMap[getValidValude(value)];
@@ -116,7 +115,7 @@ export const DigitalNumberGrid: React.FC<DigitalNumberGridProps> = ({
 };
 
 DigitalNumberGrid.defaultProps = {
-  size: defaultSize,
+  size: DEFAULT_SIZE,
 };
 
 export default DigitalNumberGrid;

@@ -1,5 +1,8 @@
 import React from 'react';
+import DigitalDot from './dot';
 import DigitalNumberGrid from './number-grid';
+import DigitalNumberSpace from './space';
+import './styles.css';
 
 export type DigitalNumberProps = {
   value?: number | string;
@@ -32,9 +35,9 @@ export const DigitalNumber: React.FC<DigitalNumberProps> = ({
         : undefined;
 
     return (
-      <div className="se-digital-item" key={key}>
+      <DigitalNumberSpace key={key}>
         <DigitalNumberGrid value={value} size={size} />
-      </div>
+      </DigitalNumberSpace>
     );
   };
 
@@ -43,7 +46,11 @@ export const DigitalNumber: React.FC<DigitalNumberProps> = ({
       {[...Array(nprefixCount)].map((_, key) =>
         mapper(key, nprefix, nprefixCount)
       )}
-      {nsuffixCount && <div className="se-digital-item"></div>}
+      {nsuffixCount && (
+        <DigitalNumberSpace>
+          <DigitalDot size={size} active={nsuffix.length > 0} />
+        </DigitalNumberSpace>
+      )}
       {nsuffixCount &&
         [...Array(nsuffixCount)].map((_, key) =>
           mapper(key, nsuffix, nsuffixCount, true)

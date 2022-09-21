@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 
-export type DigitalSettings = {
+export type DigitalSettingsType = {
   color: string;
   passiveColor: string;
   passiveOpacity: number;
@@ -9,7 +9,7 @@ export type DigitalSettings = {
   weight: 'bold' | 'normal' | 'light';
 };
 
-export const defaultSettings: DigitalSettings = {
+export const defaultSettings: DigitalSettingsType = {
   color: '#FFCC00',
   passiveColor: '#FFCC00',
   passiveOpacity: 10,
@@ -18,11 +18,11 @@ export const defaultSettings: DigitalSettings = {
   weight: 'normal',
 };
 
-export const DigitalSettingsContext = createContext<DigitalSettings>(
+export const DigitalSettingsContext = createContext<DigitalSettingsType>(
   defaultSettings
 );
 
-export type DigitalSettingsProps = DigitalSettings & {
+export type DigitalSettingsProps = DigitalSettingsType & {
   children?: React.ReactNode;
 };
 

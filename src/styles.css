@@ -91,3 +91,13 @@
 .se-digital-item {
   padding: 5px;
 }
+
+.se-digital-dot-round {
+  border-radius: 999px;
+}
+
+.se-digital-dot-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+import { genBackgroundColor } from './helpers';
 import { defaultSettings, DigitalSettingsContext } from './settings';
+import './styles.css';
 
 type LineProps = {
   active?: boolean;
@@ -11,12 +13,6 @@ type LineSvgProps = {
 };
 
 const LineSvg: React.FC<LineSvgProps> = ({ style }) => {
-  const styleSvg: React.SVGAttributes<SVGPathElement>['style'] = {
-    ...style,
-    backgroundColor: undefined,
-    fill: style?.backgroundColor,
-  };
-
   return (
     <svg
       className="se-digital-line-svg"
@@ -27,7 +23,7 @@ const LineSvg: React.FC<LineSvgProps> = ({ style }) => {
     >
       <path
         strokeWidth="1"
-        style={styleSvg}
+        style={style}
         d="M 79.88,633.84
              C 79.88,633.84 153.72,560.78 153.72,560.78
                153.72,560.78 153.85,78.25 153.85,78.25
@@ -41,27 +37,17 @@ const LineSvg: React.FC<LineSvgProps> = ({ style }) => {
 };
 
 const LineBlock: React.FC<LineProps> = ({ active, size }) => {
-  const { color, shadow, passiveColor, passiveOpacity, type } =
-    useContext(DigitalSettingsContext) ?? defaultSettings;
+  const settings = useContext(DigitalSettingsContext) ?? defaultSettings;
 
-  const style: React.HTMLAttributes<HTMLDivElement>['style'] = {
-    backgroundColor: color,
-  };
+  const { stylesDiv, stylesSvg } = genBackgroundColor(settings, size, active);
 
-  if (active) {
-    if (shadow) style.boxShadow = `0 0 ${size / 3}px ${color}`;
-  } else {
-    style.backgroundColor = passiveColor ?? 'transparent';
-    style.opacity = passiveOpacity / 100 ?? 1;
-  }
-
-  if (type === 'sharp') {
-    return <LineSvg style={style} />;
+  if (settings.type === 'sharp') {
+    return <LineSvg style={stylesSvg} />;
   }
 
   return (
     <div className="se-digital-line-round">
-      <div style={style} />
+      <div style={stylesDiv} />
     </div>
   );
 };
